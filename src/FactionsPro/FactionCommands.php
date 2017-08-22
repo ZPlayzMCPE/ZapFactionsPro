@@ -374,7 +374,7 @@ class FactionCommands {
 							return true;
 						}
                         if($args[1] == $sender->getName()){
-                            $sender->sendMessage($this->plugin->formatMessage("Meh. You can't kick yourself."));
+                            $sender->sendMessage($this->plugin->formatMessage("§4[Error] §cMeh. You can't kick yourself."));
 							return true;
                         }
 						$kicked = $this->plugin->getServer()->getPlayerExact($args[1]);
@@ -436,7 +436,7 @@ class FactionCommands {
 					}
 					if(strtolower($args[0]) == "help") {
 						if(!isset($args[1]) || $args[1] == 1) {
-							$sender->sendMessage(TextFormat::GOLD . "FactionsPro Help Page 1 of 6" . TextFormat::RED . "§a\n/f about\n/f accept\n/f overclaim [Takeover the plot of the requested faction]\n/f claim\n/f create <name>\n/f del\n/f demote <player>\n/f deny");
+							$sender->sendMessage(TextFormat::GOLD . "FactionsPro Help Page 1 of 6" . TextFormat::RED . "§a\n/f about\n/f accept\n/f overclaim [Takeover the plot of the requested faction]\n/f claim\n/f create <name>\n/f del\n/f demote <player>\n/f deny\n/f war <faction>");
 							return true;
 						}
 						if($args[1] == 2) {
@@ -448,7 +448,7 @@ class FactionCommands {
 							return true;
 						} 
                         if($args[1] == 4) {
-                            $sender->sendMessage(TextFormat::GOLD . "FactionsPro Help Page 4 of 6" . TextFormat::RED . "§d\n/f desc\n/f promote <player>\n/f allywith <faction>\n/f breakalliancewith <faction>\n\n/f allyok [Accept a request for alliance]\n/f allyno [Deny a request for alliance]\n/f allies <faction> - {The allies of your chosen faction}");
+                            $sender->sendMessage(TextFormat::GOLD . "FactionsPro Help Page 4 of 6" . TextFormat::RED . "§d\n/f desc\n/f promote <player>\n/f allywith <faction>\n/f breakalliancewith <faction>\n\n/f allyok [Accept a request for alliance]\n/f allyno [Deny a request for alliance]\n/f allies <faction> - {The allies of your chosen faction}\n/f enemywith <faction>");
 							return true;
                         } 
                         if($args[1] == 5){
