@@ -2,6 +2,6 @@
 branches:
 - patch-4
 projects:
-  ZapFactionsPro:
+  FactionsPro:
     path: ""
 ...
