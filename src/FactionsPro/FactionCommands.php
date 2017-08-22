@@ -787,7 +787,7 @@ class FactionCommands {
 						$stmt->bindValue(":y", $sender->getY());
 						$stmt->bindValue(":z", $sender->getZ());
 						$result = $stmt->execute();
-						$sender->sendMessage($this->plugin->formatMessage("Home set!", true));
+						$sender->sendMessage($this->plugin->formatMessage("§bHome set succesfully!", true));
 					}
 
 					/////////////////////////////// UNSETHOME ///////////////////////////////
@@ -803,7 +803,7 @@ class FactionCommands {
 						}
 						$faction = $this->plugin->getPlayerFaction($sender->getName());
 						$this->plugin->db->query("DELETE FROM home WHERE faction = '$faction';");
-						$sender->sendMessage($this->plugin->formatMessage("Home unset!", true));
+						$sender->sendMessage($this->plugin->formatMessage("§bHome unset succesfully!", true));
 					}
 
 					/////////////////////////////// HOME ///////////////////////////////
@@ -878,7 +878,7 @@ class FactionCommands {
                             return true;
                         }
                         if(!$this->plugin->factionExists($args[1])) {
-							$sender->sendMessage($this->plugin->formatMessage("The requested faction doesn't exist."));
+							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cThe requested faction doesn't exist."));
                             return true;
                         }
                         $this->plugin->getPlayersInFactionByRank($sender,$args[1],"Leader");
@@ -886,12 +886,12 @@ class FactionCommands {
                     }
                     if(strtolower($args[0] == "say")){
                         if(!isset($args[1])){
-                            $sender->sendMessage($this->plugin->formatMessage("§7Please use: §e/f say <message>"));
+                            $sender->sendMessage($this->plugin->formatMessage("§7Please use: §e/f say <message> §6to broadcast a message to your faction."));
                             return true;
                         }
                         if(!($this->plugin->isInFaction($player))){
                             
-                            $sender->sendMessage($this->plugin->formatMessage("You must be in a faction to send faction messages"));
+                            $sender->sendMessage($this->plugin->formatMessage("§4[Error] §cYou must be in a faction to send faction messages"));
                             return true;
                         }
                         $r = count($args);
@@ -925,64 +925,64 @@ class FactionCommands {
                     ////////////////////////////// ALLY SYSTEM ////////////////////////////////
 					if(strtolower($args[0] == "enemywith")){
                         if(!isset($args[1])){
-                            $sender->sendMessage($this->plugin->formatMessage("§7Please use: §e/f enemywith <faction>"));
+                            $sender->sendMessage($this->plugin->formatMessage("§7Please use: §e/f enemywith <faction> §6to be an enemy with a faction."));
                             return true;
                         }
                         if(!$this->plugin->isInFaction($player)) {
-							$sender->sendMessage($this->plugin->formatMessage("You must be in a faction to do this."));
+							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cYou must be in a faction to do this."));
                             return true;
 						}
                         if(!$this->plugin->isLeader($player)) {
-							$sender->sendMessage($this->plugin->formatMessage("You must be the leader to do this."));
+							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cYou must be the leader to do this."));
                             return true;
 						}
                         if(!$this->plugin->factionExists($args[1])) {
-							$sender->sendMessage($this->plugin->formatMessage("The requested faction doesn't exist."));
+							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cThe requested faction doesn't exist."));
                             return true;
 						}
                         if($this->plugin->getPlayerFaction($player) == $args[1]){
-                            $sender->sendMessage($this->plugin->formatMessage("Your faction can not enemy with itself."));
+                            $sender->sendMessage($this->plugin->formatMessage("§4[Error] §cYour faction can not enemy with itself."));
                             return true;
                         }
                         if($this->plugin->areAllies($this->plugin->getPlayerFaction($player),$args[1])){
-                            $sender->sendMessage($this->plugin->formatMessage("Your faction is already enemied with $args[1]!"));
+                            $sender->sendMessage($this->plugin->formatMessage("§4[Error] §cYour faction is already enemied with $args[1]!"));
                             return true;
                         }
                         $fac = $this->plugin->getPlayerFaction($player);
 						$leader = $this->plugin->getServer()->getPlayerExact($this->plugin->getLeader($args[1]));
                         
                         if(!($leader instanceof Player)){
-                            $sender->sendMessage($this->plugin->formatMessage("The leader of the requested faction is offline."));
+                            $sender->sendMessage($this->plugin->formatMessage("§4[Error] §cThe leader of the requested faction is offline."));
                             return true;
                         }
                         $this->plugin->setEnemies($fac, $args[1]);
-                        $sender->sendMessage($this->plugin->formatMessage("You enemied with $args[1]!",true));
-                        $leader->sendMessage($this->plugin->formatMessage("The leader of $fac has enemied your faction.",true));
+                        $sender->sendMessage($this->plugin->formatMessage("§bYou enemied with §3$args[1]!",true));
+                        $leader->sendMessage($this->plugin->formatMessage("§bThe leader of §3$fac §bhas enemied your faction.",true));
                         
                     }
                     if(strtolower($args[0] == "allywith")){
                         if(!isset($args[1])){
-                            $sender->sendMessage($this->plugin->formatMessage("§7Please use: §e/f allywith <faction>"));
+                            $sender->sendMessage($this->plugin->formatMessage("§7Please use: §e/f allywith <faction> §6to ally with a faction."));
                             return true;
                         }
                         if(!$this->plugin->isInFaction($player)) {
-							$sender->sendMessage($this->plugin->formatMessage("You must be in a faction to do this."));
+							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cYou must be in a faction to do this."));
                             return true;
 						}
                         if(!$this->plugin->isLeader($player)) {
-							$sender->sendMessage($this->plugin->formatMessage("You must be the leader to do this."));
+							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cYou must be the leader to do this."));
                             return true;
 						}
                         if(!$this->plugin->factionExists($args[1])) {
-							$sender->sendMessage($this->plugin->formatMessage("The requested faction doesn't exist."));
+							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cThe requested faction doesn't exist."));
                             return true;
 						}
                         if($this->plugin->getPlayerFaction($player) == $args[1]){
-                            $sender->sendMessage($this->plugin->formatMessage("Your faction can not ally with itself."));
+                            $sender->sendMessage($this->plugin->formatMessage("§4[Error] §cYour faction can not ally with itself."));
                             return true;
                         }
                         if($this->plugin->areAllies($this->plugin->getPlayerFaction($player),$args[1])){
-                            $sender->sendMessage($this->plugin->formatMessage("Your faction is already allied with $args[1]!"));
+                            $sender->sendMessage($this->plugin->formatMessage("§4[Error] §cYour faction is already allied with $args[1]!"));
                             return true;
                         }
                         $fac = $this->plugin->getPlayerFaction($player);
@@ -991,7 +991,7 @@ class FactionCommands {
                         $this->plugin->updateAllies($args[1]);
                         
                         if(!($leader instanceof Player)){
-                            $sender->sendMessage($this->plugin->formatMessage("The leader of the requested faction is offline."));
+                            $sender->sendMessage($this->plugin->formatMessage("§4[Error] §cThe leader of the requested faction is offline."));
                             return true;
                         }
                         if($this->plugin->getAlliesCount($args[1])>=$this->plugin->getAlliesLimit()){
