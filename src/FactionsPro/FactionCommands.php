@@ -522,7 +522,7 @@ class FactionCommands {
                         $power = $this->plugin->getFactionPower($fac);
                         $sender->sendMessage($this->plugin->formatMessage("This plot is claimed by $fac with $power STR"));
                     }
-                    if(strtolower($args[0]) == 'topfactions'){
+                    if(strtolower($args[0]) == 'top'){
                         $this->plugin->sendListOfTop10FactionsTo($sender);
                     }
                     if(strtolower($args[0]) == 'forcedelete') {
