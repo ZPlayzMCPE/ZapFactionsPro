@@ -239,7 +239,7 @@ class FactionMain extends PluginBase implements Listener {
             $i = $i + 1;
         }
         
-        $s->sendMessage($this->formatMessage("§6§l>>>>>> §b§lAllies of §3*$faction* §6§l<<<<<<§r",true));
+        $s->sendMessage($this->formatMessage("§bAllies of §3*$faction*",true));
         $s->sendMessage($team);
     }
     public function sendListOfTop10FactionsTo($s){
@@ -247,7 +247,7 @@ class FactionMain extends PluginBase implements Listener {
         $result = $this->db->query("SELECT faction FROM strength ORDER BY power DESC LIMIT 10;");
         $row = array();
         $i = 0;
-        $s->sendMessage($this->formatMessage("§6§l>>>>>> §b§lThe first 10 most §3strengthful factions §6§l<<<<<<",true));
+        $s->sendMessage($this->formatMessage("§6Top 10 factions:",true));
         while($resultArr = $result->fetchArray(SQLITE3_ASSOC)){
             $j = $i + 1;
             $cf = $resultArr['faction'];
@@ -370,9 +370,9 @@ class FactionMain extends PluginBase implements Listener {
 	
 	public function formatMessage($string, $confirm = false) {
 		if($confirm) {
-			return TextFormat::ITALIC . TextFormat::DARK_BLUE . "§5<<< " . TextFormat::GOLD . "§6Void§bFactions " . TextFormat::DARK_BLUE . "§5>>> " . TextFormat::GREEN . "$string";
+			return TextFormat::ITALIC . TextFormat::DARK_BLUE . "§5------ " . TextFormat::GOLD . "§6Void§bFactions " . TextFormat::DARK_BLUE . "§5------ " . TextFormat::GREEN . "$string";
 		} else {	
-			return TextFormat::ITALIC . TextFormat::DARK_BLUE . "§5<<< " . TextFormat::GOLD . "§6Void§bFactions " . TextFormat::DARK_BLUE . "§5>>> " . TextFormat::GREEN . "$string";
+			return TextFormat::ITALIC . TextFormat::DARK_BLUE . "§5------ " . TextFormat::GOLD . "§6Void§bFactions " . TextFormat::DARK_BLUE . "§5------ " . TextFormat::GREEN . "$string";
 		}
 	}
 	
