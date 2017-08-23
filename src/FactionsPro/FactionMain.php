@@ -239,7 +239,7 @@ class FactionMain extends PluginBase implements Listener {
             $i = $i + 1;
         }
         
-        $s->sendMessage($this->formatMessage("~ Allies of *$faction* ~",true));
+        $s->sendMessage($this->formatMessage("§6§l>>>>>> §b§lAllies of §3*$faction* §6§l<<<<<<§r",true));
         $s->sendMessage($team);
     }
     public function sendListOfTop10FactionsTo($s){
@@ -253,7 +253,7 @@ class FactionMain extends PluginBase implements Listener {
             $cf = $resultArr['faction'];
             $pf = $this->getFactionPower($cf);
             $df = $this->getNumberOfPlayers($cf);
-            $s->sendMessage(TextFormat::ITALIC.TextFormat::GOLD."$j -> ".TextFormat::GREEN."$cf".TextFormat::GOLD." with ".TextFormat::RED."$pf STR".TextFormat::GOLD." and ".TextFormat::LIGHT_PURPLE."$df PLAYERS".TextFormat::RESET);
+            $s->sendMessage(TextFormat::ITALIC.TextFormat::GOLD."§r§a$j -> ".TextFormat::GREEN."§b$cf".TextFormat::GOLD." §cwith ".TextFormat::RED."§d$pf §5STR".TextFormat::GOLD." §eand ".TextFormat::LIGHT_PURPLE."§2$df §3PLAYERS".TextFormat::RESET);
             $i = $i + 1;
         } 
         
