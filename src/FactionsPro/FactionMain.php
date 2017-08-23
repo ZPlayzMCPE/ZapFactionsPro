@@ -247,7 +247,7 @@ class FactionMain extends PluginBase implements Listener {
         $result = $this->db->query("SELECT faction FROM strength ORDER BY power DESC LIMIT 10;");
         $row = array();
         $i = 0;
-        $s->sendMessage($this->formatMessage("~ The first 10 most strengthful factions ~",true));
+        $s->sendMessage($this->formatMessage("§6§l>>>>>> §b§lThe first 10 most §3strengthful factions §6§l<<<<<<",true));
         while($resultArr = $result->fetchArray(SQLITE3_ASSOC)){
             $j = $i + 1;
             $cf = $resultArr['faction'];
@@ -319,13 +319,13 @@ class FactionMain extends PluginBase implements Listener {
             
             if($this->prefs->get("EnableOverClaim")){
                 if($power_sender < $power_claimedBy){
-                    $sender->sendMessage($this->formatMessage("This area is aleady claimed by $claimedBy with $power_claimedBy STR. Your faction has $power_sender power. You don't have enough power to overclaim this plot."));
+                    $sender->sendMessage($this->formatMessage("§cThis area is aleady claimed by §4$claimedBy §cwith §4$power_claimedBy §cSTR. Your faction has §4$power_sender §cpower. You don't have enough power to overclaim this plot."));
                 } else {
-                    $sender->sendMessage($this->formatMessage("This area is aleady claimed by $claimedBy with $power_claimedBy STR. Your faction has $power_sender power. Type /f overclaim to overclaim this plot if you want."));
+                    $sender->sendMessage($this->formatMessage("§cThis area is aleady claimed by §4$claimedBy §cwith §4$power_claimedBy §cSTR. §bYour faction has §3$power_sender §bpower. Type §3/f overclaim §6to overclaim this plot if you want."));
                 }
                 return false;
             } else {
-			    $sender->sendMessage($this->formatMessage("Overclaiming is disabled."));
+			    $sender->sendMessage($this->formatMessage("§cOverclaiming is disabled."));
 			    return false;
             }
 		}
@@ -370,9 +370,9 @@ class FactionMain extends PluginBase implements Listener {
 	
 	public function formatMessage($string, $confirm = false) {
 		if($confirm) {
-			return TextFormat::ITALIC . TextFormat::DARK_BLUE . "- " . TextFormat::GOLD . "Factions " . TextFormat::DARK_BLUE . ">> " . TextFormat::GREEN . "$string";
+			return TextFormat::ITALIC . TextFormat::DARK_BLUE . "§5<<< " . TextFormat::GOLD . "§6Void§bFactions " . TextFormat::DARK_BLUE . "§5>>> " . TextFormat::GREEN . "$string";
 		} else {	
-			return TextFormat::ITALIC . TextFormat::DARK_BLUE . "- " . TextFormat::GOLD . "Factions " . TextFormat::DARK_BLUE . ">> " . TextFormat::GREEN . "$string";
+			return TextFormat::ITALIC . TextFormat::DARK_BLUE . "§5<<< " . TextFormat::GOLD . "§6Void§bFactions " . TextFormat::DARK_BLUE . "§5>>> " . TextFormat::GREEN . "$string";
 		}
 	}
 	
