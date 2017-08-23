@@ -370,9 +370,9 @@ class FactionMain extends PluginBase implements Listener {
 	
 	public function formatMessage($string, $confirm = false) {
 		if($confirm) {
-			return TextFormat::ITALIC . TextFormat::DARK_BLUE . "§5------ " . TextFormat::GOLD . "§6Void§bFactions " . TextFormat::DARK_BLUE . "§5------ " . TextFormat::GREEN . "$string";
+			return TextFormat::ITALIC . TextFormat::DARK_BLUE . "§5[" . TextFormat::GOLD . "§6Void§bFactions" . TextFormat::DARK_BLUE . "§5] " . TextFormat::GREEN . "$string";
 		} else {	
-			return TextFormat::ITALIC . TextFormat::DARK_BLUE . "§5------ " . TextFormat::GOLD . "§6Void§bFactions " . TextFormat::DARK_BLUE . "§5------ " . TextFormat::GREEN . "$string";
+			return TextFormat::ITALIC . TextFormat::DARK_BLUE . "§5[" . TextFormat::GOLD . "§6Void§bFactions" . TextFormat::DARK_BLUE . "§5] " . TextFormat::GREEN . "$string";
 		}
 	}
 	
