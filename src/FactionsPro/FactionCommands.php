@@ -503,7 +503,7 @@ class FactionCommands {
 							return true;
 						}
                         
-						$sender->sendMessage($this->plugin->formatMessage("§bGetting your coordinates...", true));
+						$sender->sendMessage($this->plugin->formatMessage("§bGetting your coordinates... §3Please wait...", true));
                         $plot_size = $this->plugin->prefs->get("PlotSize");
                         $faction_power = $this->plugin->getFactionPower($faction);
 						$sender->sendMessage($this->plugin->formatMessage("§bYour land has been claimed.", true));
@@ -561,7 +561,7 @@ class FactionCommands {
                             return true;
 						}
                         $this->plugin->addFactionPower($args[1],$args[2]);
-				        $sender->sendMessage($this->plugin->formatMessage("§bSuccessfully added $args[2] STR to $args[1]", true));
+				        $sender->sendMessage($this->plugin->formatMessage("§bSuccessfully added §3$args[2] §bSTR to §3$args[1]", true));
                     }
                     if(strtolower($args[0]) == 'pf'){
                         if(!isset($args[1])){
@@ -602,7 +602,7 @@ class FactionCommands {
 							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §c$needed_power STR is required but your faction has only $faction_power STR."));
                             return true;
                         }
-						$sender->sendMessage($this->plugin->formatMessage("§bGetting your coordinates...", true));
+						$sender->sendMessage($this->plugin->formatMessage("§bGetting your Coordinates... §3Please wair...", true));
 						$x = floor($sender->getX());
 						$y = floor($sender->getY());
 						$z = floor($sender->getZ());
@@ -698,7 +698,7 @@ class FactionCommands {
 							$this->plugin->db->query("DELETE FROM confirm WHERE player='$lowercaseName';");
 							$sender->sendMessage($this->plugin->formatMessage("§bYou successfully joined §3$faction!", true));
                             $this->plugin->addFactionPower($faction,$this->plugin->prefs->get("PowerGainedPerPlayerInFaction"));
-							$this->plugin->getServer()->getPlayerExact($array["invitedby"])->sendMessage($this->plugin->formatMessage("$player joined the faction!", true));
+							$this->plugin->getServer()->getPlayerExact($array["invitedby"])->sendMessage($this->plugin->formatMessage("§3$player §bjoined the faction named: §3$factionName! §bWe now have: §3$numPlayers §bin your faction!", true));
 							$this->plugin->updateTag($sender->getName());
 						} else {
 							$sender->sendMessage($this->plugin->formatMessage("§cInvite has timed out!"));
@@ -721,8 +721,8 @@ class FactionCommands {
 						$currentTime = time();
 						if( ($currentTime - $invitedTime) <= 60 ) { //This should be configurable
 							$this->plugin->db->query("DELETE FROM confirm WHERE player='$lowercaseName';");
-							$sender->sendMessage($this->plugin->formatMessage("Invite declined!", true));
-							$this->plugin->getServer()->getPlayerExact($array["invitedby"])->sendMessage($this->plugin->formatMessage("$player declined the invite!"));
+							$sender->sendMessage($this->plugin->formatMessage("§cInvite declined!", true));
+							$this->plugin->getServer()->getPlayerExact($array["invitedby"])->sendMessage($this->plugin->formatMessage("§3$player §bdeclined the invite!"));
 						} else {
 							$sender->sendMessage($this->plugin->formatMessage("§cInvite has timed out!"));
 							$this->plugin->db->query("DELETE * FROM confirm WHERE player='$lowercaseName';");
@@ -787,7 +787,7 @@ class FactionCommands {
 						$stmt->bindValue(":y", $sender->getY());
 						$stmt->bindValue(":z", $sender->getZ());
 						$result = $stmt->execute();
-						$sender->sendMessage($this->plugin->formatMessage("§bHome set succesfully!", true));
+						$sender->sendMessage($this->plugin->formatMessage("§bHome set succesfully! §bDo §3/f home §6to see if it's set properly.", true));
 					}
 
 					/////////////////////////////// UNSETHOME ///////////////////////////////
@@ -821,7 +821,7 @@ class FactionCommands {
 							$sender->sendMessage($this->plugin->formatMessage("§bTeleported home.", true));
 						} 
 						else{
-							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cHome is not set."));
+							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cHome is not set! Do §2/f sethome §cto set your faction home."));
 						}
 					}
                     
@@ -874,7 +874,7 @@ class FactionCommands {
                     }
                     if(strtolower($args[0] == "leaderof")){
                         if(!isset($args[1])){
-                            $sender->sendMessage($this->plugin->formatMessage("§7Please use: §e/f leaderof <faction> §6to see whose the leader of a faction."));
+                            $sender->sendMessage($this->plugin->formatMessage("§7Please use: §e/f leaderof <faction> §6to see who's the leader of a faction."));
                             return true;
                         }
                         if(!$this->plugin->factionExists($args[1])) {
