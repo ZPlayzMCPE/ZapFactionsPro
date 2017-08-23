@@ -179,7 +179,7 @@ class FactionCommands {
 							return true;
 						}
 						if($this->plugin->isFactionFull($this->plugin->getPlayerFaction($player)) ) {
-							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cFaction is full. §b[§5$numplayers§b] §cPlease kick players to make room."));
+							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cFaction is full. §b[§5$numPlayers§b] §cPlease kick players to make room."));
 							return true;
 						}
 						$invited = $this->plugin->getServer()->getPlayerExact($args[1]);
