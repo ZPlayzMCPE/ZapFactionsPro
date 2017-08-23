@@ -90,7 +90,7 @@ class FactionCommands {
 							return true;
 						} 
 						if(!$this->plugin->areEnemies($this->plugin->getPlayerFaction($player),$args[1])){
-                            $sender->sendMessage($this->plugin->formatMessage("Your faction is not enemied with $args[1]!"));
+                            $sender->sendMessage($this->plugin->formatMessage("§4[Error] §cfaction is not enemied with §2$args[1]!"));
                             return true;
                         } else {
 							$factionName = $args[1];
@@ -101,7 +101,7 @@ class FactionCommands {
 										$task = new FactionWar($this->plugin, $r);
 										$handler = $this->plugin->getServer()->getScheduler()->scheduleDelayedTask($task, 20 * 60 * 2);
 										$task->setHandler($handler);
-										$p->sendMessage("§7The war against §e$factionName and $sFaction §7has started!");
+										$p->sendMessage("§bThe war against §3$factionName §band §3$sFaction §bhas started!");
 										if($this->plugin->getPlayerFaction($p->getName()) == $sFaction) {
 											$this->plugin->war_players[$sFaction][] = $p->getName();
 										}
@@ -118,7 +118,7 @@ class FactionCommands {
 							foreach($this->plugin->getServer()->getOnlinePlayers() as $p) {
 								if($this->plugin->getPlayerFaction($p->getName()) == $factionName) {
 									if($this->plugin->getLeader($factionName) == $p->getName()) {
-										$p->sendMessage("§a$sFaction wants to start war, §2'/f war $sFaction' §ato start!");
+										$p->sendMessage("§a$sFaction wants to start war, §bType: §2'/f war $sFaction' §ato start!");
 										$sender->sendMessage("§aFaction war requested!");
 										return true;
 									}
@@ -166,7 +166,7 @@ class FactionCommands {
                             $this->plugin->updateAllies($factionName);
                             $this->plugin->setFactionPower($factionName, $this->plugin->prefs->get("TheDefaultPowerEveryFactionStartsWith"));
 							$this->plugin->updateTag($sender->getName());
-							$sender->sendMessage($this->plugin->formatMessage("§bFaction successfully created!", true));
+							$sender->sendMessage($this->plugin->formatMessage("§bFaction successfully created! §6your faction is called §e$factionName", true));
 							return true;
 						}
 					}
@@ -179,7 +179,7 @@ class FactionCommands {
 							return true;
 						}
 						if($this->plugin->isFactionFull($this->plugin->getPlayerFaction($player)) ) {
-							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cFaction is full. Please kick players to make room."));
+							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cFaction is full. §b[§5$numplayers§b] §cPlease kick players to make room."));
 							return true;
 						}
 						$invited = $this->plugin->getServer()->getPlayerExact($args[1]);
@@ -213,8 +213,8 @@ class FactionCommands {
 				        $stmt->bindValue(":invitedby", $sender->getName());
 				        $stmt->bindValue(":timestamp", time());
 				        $result = $stmt->execute();
-				        $sender->sendMessage($this->plugin->formatMessage("$invitedName has been invited!", true));
-				        $invited->sendMessage($this->plugin->formatMessage("§7You have been invited to §e$factionName. §7Type §e'/f accept' or '/f deny' §6into chat to accept or deny!", true));
+				        $sender->sendMessage($this->plugin->formatMessage("§3$invitedName §bhas been invited!", true));
+				        $invited->sendMessage($this->plugin->formatMessage("§bYou have been invited to §3$factionName. §bType: §3'/f accept' or '/f deny' §6into chat to accept or deny!", true));
 						
 					}
 					
@@ -302,10 +302,10 @@ class FactionCommands {
 						$stmt->bindValue(":rank", "Officer");
 						$result = $stmt->execute();
 						$player = $this->plugin->getServer()->getPlayerExact($args[1]);
-						$sender->sendMessage($this->plugin->formatMessage("$args[1] has been promoted to Officer!", true));
+						$sender->sendMessage($this->plugin->formatMessage("§3$args[1] §bhas been promoted to §3Officer!", true));
                         
 						if($player instanceof Player) {
-						    $player->sendMessage($this->plugin->formatMessage("You were promoted to officer of $factionName!", true));
+						    $player->sendMessage($this->plugin->formatMessage("§bYou were promoted to §3officer §bof §3$factionName!", true));
                             $this->plugin->updateTag($this->plugin->getServer()->getPlayerExact($args[1])->getName());
                             return true;
                         }
@@ -327,7 +327,7 @@ class FactionCommands {
 							return true;
 						}
 						if($this->plugin->getPlayerFaction($player) != $this->plugin->getPlayerFaction($args[1])) {
-							$sender->sendMessage($this->plugin->formatMessage("Player is not in this faction!"));
+							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cPlayer is not in this faction!"));
 							return true;
 						}
 						
@@ -346,9 +346,9 @@ class FactionCommands {
 						$stmt->bindValue(":rank", "Member");
 						$result = $stmt->execute();
 						$player = $this->plugin->getServer()->getPlayerExact($args[1]);
-						$sender->sendMessage($this->plugin->formatMessage("$args[1] has been demoted to Member!", true));
+						$sender->sendMessage($this->plugin->formatMessage("§3$args[1] §bhas been demoted to §3Member!", true));
 						if($player instanceof Player) {
-						    $player->sendMessage($this->plugin->formatMessage("You were demoted to member of $factionName!", true));
+						    $player->sendMessage($this->plugin->formatMessage("§dYou were demoted to §5member §dof §5$factionName!", true));
 						    $this->plugin->updateTag($this->plugin->getServer()->getPlayerExact($args[1])->getName());
                             return true;
                         }
@@ -380,7 +380,7 @@ class FactionCommands {
 						$kicked = $this->plugin->getServer()->getPlayerExact($args[1]);
 						$factionName = $this->plugin->getPlayerFaction($player);
 						$this->plugin->db->query("DELETE FROM master WHERE player='$args[1]';");
-						$sender->sendMessage($this->plugin->formatMessage("§bYou successfully kicked §3$args[1]!", true));
+						$sender->sendMessage($this->plugin->formatMessage("§bYou successfully kicked §3$args[1]! §cYour faction is down to §3$numPlayers!", true));
                         $this->plugin->subtractFactionPower($factionName,$this->plugin->prefs->get("PowerGainedPerPlayerInFaction"));
 						
 						if($kicked instanceof Player) {
@@ -407,11 +407,11 @@ class FactionCommands {
 							$leader = $this->plugin->getLeader($faction);
 							$numPlayers = $this->plugin->getNumberOfPlayers($faction);
 							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§3§l-------§bINFORMATION§3-------§r".TextFormat::RESET);
-							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§a|[Faction]| : " . TextFormat::GREEN . "§2$faction".TextFormat::RESET);
-							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§b|(Leader)| : " . TextFormat::YELLOW . "§3$leader".TextFormat::RESET);
-							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§c|^Players^| : " . TextFormat::LIGHT_PURPLE . "§4$numPlayers".TextFormat::RESET);
-							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§d|&Strength&| : " . TextFormat::RED . "§5$power" . " §6STR".TextFormat::RESET);
-							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§e|*Description*| : " . TextFormat::AQUA . TextFormat::UNDERLINE . "§6$message".TextFormat::RESET);
+							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§a|Faction| : " . TextFormat::GREEN . "§2$faction".TextFormat::RESET);
+							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§b|Leader| : " . TextFormat::YELLOW . "§3$leader".TextFormat::RESET);
+							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§c|Players| : " . TextFormat::LIGHT_PURPLE . "§4$numPlayers".TextFormat::RESET);
+							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§d|Strength| : " . TextFormat::RED . "§5$power" . " §6STR".TextFormat::RESET);
+							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§e|Description| : " . TextFormat::AQUA . TextFormat::UNDERLINE . "§6$message".TextFormat::RESET);
 							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§3§l-------§bINFORMATION§3-------§r".TextFormat::RESET);
 						} else {
                             if(!$this->plugin->isInFaction($player)){
@@ -426,37 +426,37 @@ class FactionCommands {
 							$leader = $this->plugin->getLeader($faction);
 							$numPlayers = $this->plugin->getNumberOfPlayers($faction);
 							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§3§l-------§bINFORMATION§3-------§r".TextFormat::RESET);
-							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§a|[Faction]| : " . TextFormat::GREEN . "§2$faction".TextFormat::RESET);
-							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§b|(Leader)| : " . TextFormat::YELLOW . "§3$leader".TextFormat::RESET);
-							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§c|^Players^| : " . TextFormat::LIGHT_PURPLE . "§4$numPlayers".TextFormat::RESET);
-							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§d|&Strength&| : " . TextFormat::RED . "§5$power" . " §6STR".TextFormat::RESET);
-							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§e|*Description*| : " . TextFormat::AQUA . TextFormat::UNDERLINE . "§6$message".TextFormat::RESET);
+							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§a|Faction| : " . TextFormat::GREEN . "§2$faction".TextFormat::RESET);
+							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§b|Leader| : " . TextFormat::YELLOW . "§3$leader".TextFormat::RESET);
+							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§c|Players| : " . TextFormat::LIGHT_PURPLE . "§4$numPlayers".TextFormat::RESET);
+							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§d|Strength| : " . TextFormat::RED . "§5$power" . " §6STR".TextFormat::RESET);
+							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§e|Description| : " . TextFormat::AQUA . TextFormat::UNDERLINE . "§6$message".TextFormat::RESET);
 							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§3§l-------§bINFORMATION§3-------§r".TextFormat::RESET);
 						}
 					}
 					if(strtolower($args[0]) == "help") {
 						if(!isset($args[1]) || $args[1] == 1) {
-							$sender->sendMessage(TextFormat::GOLD . "§6Void§bFactions§cPE §5Help Page 1 of 6" . TextFormat::RED . "§a\n/f about\n/f accept\n/f overclaim [Takeover the plot of the requested faction]\n/f claim\n/f create <name>\n/f del\n/f demote <player>\n/f deny\n/f war <faction>");
+							$sender->sendMessage(TextFormat::GOLD . "§6Void§bFactions§cPE §5Help Page 1 of 6" . TextFormat::RED . "§a\n/f about - Check factions plugin information.\n/f accept - Accept a faction request.\n/f overclaim [Takeover the plot of the requested faction]\n/f claim - Claim a faction plot.\n/f create <name> - Create's a faction.\n/f del - Delete's / Disband's a faction.\n/f demote <player> - Demote's a player from their faction.\n/f deny - Deny's a faction request.\n/f war <faction> - Make a war with your faction.");
 							return true;
 						}
 						if($args[1] == 2) {
-							$sender->sendMessage(TextFormat::GOLD . "§6Void§bFactions§cPE §5Help Page 2 of 6" . TextFormat::RED . "§b\n/f home\n/f help <page>\n/f info\n/f info <faction>\n/f invite <player>\n/f kick <player>\n/f leader <player>\n/f leave");
+							$sender->sendMessage(TextFormat::GOLD . "§6Void§bFactions§cPE §5Help Page 2 of 6" . TextFormat::RED . "§b\n/f home - Teleports you to your f home.\n/f help <page> - Gives out the help commands in factions.\n/f info - Checks the faction you're in information.\n/f info <faction> - Checks information from another faction.\n/f invite <player> - Invites a player to your faction.\n/f kick <player> - Kicks a player from your faction.\n/f leader <player> - Transfer leaderships of your faction.\n/f leave - Leaves the specific faction.");
 							return true;
 						} 
                         if($args[1] == 3) {
-							$sender->sendMessage(TextFormat::GOLD . "§6Void§bFactions§cPE §5Help Page 3 of 6" . TextFormat::RED . "§c\n/f sethome\n/f unclaim\n/f unsethome\n/f ourmembers - {Members + Statuses}\n/f ourofficers - {Officers + Statuses}\n/f ourleader - {Leader + Status}\n/f allies - {The allies of your faction");
+							$sender->sendMessage(TextFormat::GOLD . "§6Void§bFactions§cPE §5Help Page 3 of 6" . TextFormat::RED . "§c\n/f sethome - Set home command.\n/f unclaim - Unclaims a plot.\n/f unsethome - Delete's the sethome you made.\n/f ourmembers - {Members + Statuses}\n/f ourofficers - {Officers + Statuses}\n/f ourleader - {Leader + Status}\n/f allies - {The allies of your faction");
 							return true;
 						} 
                         if($args[1] == 4) {
-                            $sender->sendMessage(TextFormat::GOLD . "§6Void§bFactions§cPE §5Help Page 4 of 6" . TextFormat::RED . "§d\n/f desc\n/f promote <player>\n/f allywith <faction>\n/f breakalliancewith <faction>\n\n/f allyok [Accept a request for alliance]\n/f allyno [Deny a request for alliance]\n/f allies <faction> - {The allies of your chosen faction}\n/f enemywith <faction>");
+                            $sender->sendMessage(TextFormat::GOLD . "§6Void§bFactions§cPE §5Help Page 4 of 6" . TextFormat::RED . "§d\n/f desc - Make a faction description.\n/f promote <player> - Promotes player from your faction.\n/f allywith <faction> - Allie with another faction.\n/f breakalliancewith <faction> - Breaks an alliance with a faction.\n/f allyok [Accept a request for alliance]\n/f allyno [Deny a request for alliance]\n/f allies <faction> - {The allies of your chosen faction}\n/f enemywith <faction> - Enemy's with another faction.");
 							return true;
                         } 
                         if($args[1] == 5){
-                            $sender->sendMessage(TextFormat::GOLD . "§6Void§bFactions§cPE §5Help Page 5 of 6" . TextFormat::RED . "§e\n/f membersof <faction>\n/f officersof <faction>\n/f leaderof <faction>\n/f say <send message to everyone in your faction>\n/f pf <player>\n/f top");
+                            $sender->sendMessage(TextFormat::GOLD . "§6Void§bFactions§cPE §5Help Page 5 of 6" . TextFormat::RED . "§e\n/f membersof <faction> - Checks to see who's a member of your/a faction.\n/f officersof <faction> - Checks to see who's a officier of your/a faction.\n/f leaderof <faction> - Checks to see who's the leader of your/a faction.\n/f say <send message to everyone in your faction>\n/f pf <player> - Checks a player profile.\n/f top - Checks to see which factions are the top 10 most powerful factions on the server!");
 							return true;
                         }
                         else {
-                            $sender->sendMessage(TextFormat::GOLD . "§6Void§bFactions§cPE §5Help Page 6 of 6" . TextFormat::RED . "§1\n/f forceunclaim <faction> [Unclaim a faction plot by force - OP]\n\n/f forcedelete <faction> [Delete a faction by force - OP]\n\n/f addstrto <faction> <STR> [Add positive/negative STR to a faction - OP]\n\n/f map [Show faction map]");
+                            $sender->sendMessage(TextFormat::GOLD . "§6Void§bFactions§cPE §5Help Page 6 of 6" . TextFormat::RED . "§1\n/f forceunclaim <faction> [Unclaim a faction plot by force - OP]\n/f forcedelete <faction> [Delete a faction by force - OP]\n/f addstrto <faction> <STR> [Add positive/negative STR to a faction - OP]\n/f map [Show faction map]");
 							return true;
                         }
 					}
