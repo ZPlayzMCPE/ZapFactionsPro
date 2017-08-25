@@ -448,7 +448,7 @@ class FactionCommands {
 							return true;
 						} 
                         if($args[1] == 4) {
-                            $sender->sendMessage(TextFormat::GOLD . "§6Void§bFactions§cPE §5Help Page 4 of 6" . TextFormat::RED . "§d\n/f desc - Make a faction description.\n/f promote <player> - Promotes player from your faction.\n/f allywith <faction> - Allie with another faction.\n/f breakalliancewith <faction> - Breaks an alliance with a faction.\n/f allyok [Accept a request for alliance]\n/f allyno [Deny a request for alliance]\n/f allies <faction> - {The allies of your chosen faction}\n/f enemywith <faction> - Enemy's with another faction.");
+                            $sender->sendMessage(TextFormat::GOLD . "§6Void§bFactions§cPE §5Help Page 4 of 6" . TextFormat::RED . "§d\n/f desc - Make a faction description.\n/f promote <player> - Promotes player from your faction.\n/f allywith <faction> - Allie with another faction.\n/f breakalliancewith <faction> - Breaks an alliance with a faction.\n/f allyok [Accept a request for alliance]\n/f allyno [Deny a request for alliance]\n/f allies <faction> - {The allies of your chosen faction}\n/f enemywith <faction> - Enemy's with another faction.\n/f allychat - Chat with your allies.\n/f chat - Chat with your faction members.");
 							return true;
                         } 
                         if($args[1] == 5){
@@ -1164,9 +1164,9 @@ class FactionCommands {
 					/////////////////////////////// ABOUT ///////////////////////////////
 					
 					if(strtolower($args[0] == 'about')) {
-						$sender->sendMessage(TextFormat::GREEN . "§r§c[Original] §bBy " . TextFormat::BOLD . "Tethered_");
-						$sender->sendMessage(TextFormat::GOLD . "§c[Version] §bv1.9.1 " . TextFormat::BOLD . "Zeao");
-						$sender->sendMessage(TextFormat::DARK_PURPLE . "§c[Code] §bedited by ". TextFormat::BOLD . "§3Zeao");
+						$sender->sendMessage(TextFormat::GREEN . "§r§c[Original] §bBy " . TextFormat::BOLD . "§r§3Tethered_");
+						$sender->sendMessage(TextFormat::GOLD . "§c[Version] §bv1.9.1 " . TextFormat::BOLD . "§r§6Void§bFactions§cPE");
+						$sender->sendMessage(TextFormat::DARK_PURPLE . "§c[Code] §bedited by ". TextFormat::BOLD . "§r§3Zeao");
 					}
 					/////////////////////////////// MAP, map by Primus (no compass) ////////////////////////////////
 					// Coupon for compass: G1wEmEde0mp455
