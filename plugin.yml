@@ -1,7 +1,7 @@
 name: FactionsPro
 author: (old code) - Tethered_; (new code) - EpicDF, Derpific, Zeao
 description: Official Faction Manager for ZapNetwork
-version: 1.9.0
+version: 1.9.1
 main: FactionsPro\FactionMain
 api:
 - 3.0.0
