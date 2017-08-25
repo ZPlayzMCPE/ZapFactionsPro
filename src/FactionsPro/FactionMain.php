@@ -239,7 +239,7 @@ class FactionMain extends PluginBase implements Listener {
             $i = $i + 1;
         }
         
-        $s->sendMessage($this->formatMessage("§bAllies of §3*$faction*",true));
+        $s->sendMessage($this->formatMessage("§6Allies of $faction:",true));
         $s->sendMessage($team);
     }
     public function sendListOfTop10FactionsTo($s){
