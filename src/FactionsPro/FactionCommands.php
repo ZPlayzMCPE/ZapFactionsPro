@@ -696,9 +696,9 @@ class FactionCommands {
 							$stmt->bindValue(":rank", "Member");
 							$result = $stmt->execute();
 							$this->plugin->db->query("DELETE FROM confirm WHERE player='$lowercaseName';");
-							$sender->sendMessage($this->plugin->formatMessage("§bYou successfully joined §3$faction! §bThere's currently §3$numPlayers §bin this faction!", true));
+							$sender->sendMessage($this->plugin->formatMessage("§bYou successfully joined §3$faction!", true));
                             $this->plugin->addFactionPower($faction,$this->plugin->prefs->get("PowerGainedPerPlayerInFaction"));
-							$this->plugin->getServer()->getPlayerExact($array["invitedby"])->sendMessage($this->plugin->formatMessage("§3$player §bjoined the faction named: §3$factionName! §bWe now have: §3$numPlayers §bin your faction!", true));
+							$this->plugin->getServer()->getPlayerExact($array["invitedby"])->sendMessage($this->plugin->formatMessage("§3$player §bjoined the faction named: §3$faction!", true));
 							$this->plugin->updateTag($sender->getName());
 						} else {
 							$sender->sendMessage($this->plugin->formatMessage("§cInvite has timed out! Please try again."));
@@ -742,7 +742,7 @@ class FactionCommands {
 								$this->plugin->db->query("DELETE FROM strength WHERE faction='$faction';");
 								$this->plugin->db->query("DELETE FROM motd WHERE faction='$faction';");
 								$this->plugin->db->query("DELETE FROM home WHERE faction='$faction';");
-								$sender->sendMessage($this->plugin->formatMessage("§bFaction successfully disbanded. You deleted your faction named: $factionName and the faction plot was unclaimed!", true));
+								$sender->sendMessage($this->plugin->formatMessage("§bFaction successfully disbanded. You deleted your faction named: $faction and the faction plot was unclaimed!", true));
 								$this->plugin->updateTag($sender->getName());
 							} else {
 								$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cYou are not leader!"));
