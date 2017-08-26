@@ -12,7 +12,7 @@
 
 The .phar plugin works! How-To Install:
 
-1. Download most recent .phar build from https://poggit.pmmp.io/ci/TheFixerDevelopment/ZapFactionsPro/ZapFactionsPro
+1. Download most recent .phar build from https://poggit.pmmp.io/ci/TheFixerDevelopment/ZapFactionsPro/FactionsPro
 
 2. Upload .phar plugin into the Plugins folder in your server files.
 
