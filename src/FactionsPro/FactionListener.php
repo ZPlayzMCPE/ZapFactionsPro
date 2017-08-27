@@ -212,7 +212,7 @@ class FactionListener implements Listener {
 
 				$event->setCancelled(true);
 
-				$event->getPlayer()->sendMessage($this->plugin->formatMessage("§cYou cannot break blocks here. This is already a property of a faction. Type §4/f plotinfo or /f map §6for details."));
+				$event->getPlayer()->sendMessage($this->plugin->formatMessage("§dYou cannot break blocks here. This is already a property of a faction. Type §5/f plotinfo §dor §5/f map §6to check the plot/claim details."));
 
 				return true;
 
