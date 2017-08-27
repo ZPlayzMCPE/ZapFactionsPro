@@ -407,11 +407,11 @@ class FactionCommands {
 							$leader = $this->plugin->getLeader($faction);
 							$numPlayers = $this->plugin->getNumberOfPlayers($faction);
 							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§3§l-------§bINFORMATION§3-------§r".TextFormat::RESET);
-							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§a|Faction| : " . TextFormat::GREEN . "§2$faction".TextFormat::RESET);
-							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§b|Leader| : " . TextFormat::YELLOW . "§3$leader".TextFormat::RESET);
-							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§c|Players| : " . TextFormat::LIGHT_PURPLE . "§4$numPlayers".TextFormat::RESET);
-							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§d|Strength| : " . TextFormat::RED . "§5$power" . " §6STR".TextFormat::RESET);
-							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§e|Description| : " . TextFormat::AQUA . TextFormat::UNDERLINE . "§6$message".TextFormat::RESET);
+							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§aFaction: " . TextFormat::GREEN . "§2$faction".TextFormat::RESET);
+							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§bLeader: " . TextFormat::YELLOW . "§3$leader".TextFormat::RESET);
+							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§cPlayers: " . TextFormat::LIGHT_PURPLE . "§4$numPlayers".TextFormat::RESET);
+							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§dStrength: " . TextFormat::RED . "§5$power" . " §6STR".TextFormat::RESET);
+							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§eDescription: " . TextFormat::AQUA . TextFormat::UNDERLINE . "§6$message".TextFormat::RESET);
 							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§3§l-------§bINFORMATION§3-------§r".TextFormat::RESET);
 						} else {
                             if(!$this->plugin->isInFaction($player)){
@@ -426,11 +426,11 @@ class FactionCommands {
 							$leader = $this->plugin->getLeader($faction);
 							$numPlayers = $this->plugin->getNumberOfPlayers($faction);
 							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§3§l-------§bINFORMATION§3-------§r".TextFormat::RESET);
-							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§a|Faction| : " . TextFormat::GREEN . "§2$faction".TextFormat::RESET);
-							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§b|Leader| : " . TextFormat::YELLOW . "§3$leader".TextFormat::RESET);
-							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§c|Players| : " . TextFormat::LIGHT_PURPLE . "§4$numPlayers".TextFormat::RESET);
-							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§d|Strength| : " . TextFormat::RED . "§5$power" . " §6STR".TextFormat::RESET);
-							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§e|Description| : " . TextFormat::AQUA . TextFormat::UNDERLINE . "§6$message".TextFormat::RESET);
+							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§aFactions: " . TextFormat::GREEN . "§2$faction".TextFormat::RESET);
+							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§bLeader: " . TextFormat::YELLOW . "§3$leader".TextFormat::RESET);
+							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§cPlayers: " . TextFormat::LIGHT_PURPLE . "§4$numPlayers".TextFormat::RESET);
+							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§dStrength: " . TextFormat::RED . "§5$power" . " §6STR".TextFormat::RESET);
+							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§eDescription: " . TextFormat::AQUA . TextFormat::UNDERLINE . "§6$message".TextFormat::RESET);
 							$sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§3§l-------§bINFORMATION§3-------§r".TextFormat::RESET);
 						}
 					}
