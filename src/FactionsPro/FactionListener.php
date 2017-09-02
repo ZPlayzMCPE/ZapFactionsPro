@@ -88,7 +88,7 @@ class FactionListener implements Listener {
 
 				$PCE->setCancelled(true);
 
-				$PCE->getPlayer()->sendMessage($this->plugin->formatMessage("§bSuccessfully updated the faction description! Type §3/f info §6to see your faction information.", true));
+				$PCE->getPlayer()->sendMessage($this->plugin->formatMessage("§bSuccessfully updated the faction description! §aOne more step! To invite people to your faction, do '§2/f invite <name>'", true));
 
 			}
 
