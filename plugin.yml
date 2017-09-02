@@ -3,7 +3,7 @@ author: (old code) - Tethered_; (new code) - EpicDF, Derpific, Zeao
 description: Official Faction Manager for ZapNetwork
 version: 1.9.1
 main: FactionsPro\FactionMain
-api: [3.0.0-ALPHA7, 3.0.0-ALPHA8, 3.0.0-ALPHA9, 3.0.0-ALPHA10]
+api: [3.0.0-ALPHA7]
 commands:
   f:
     description: use /f help for all parameters
