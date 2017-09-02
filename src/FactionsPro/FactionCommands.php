@@ -166,7 +166,7 @@ class FactionCommands {
                             $this->plugin->updateAllies($factionName);
                             $this->plugin->setFactionPower($factionName, $this->plugin->prefs->get("TheDefaultPowerEveryFactionStartsWith"));
 							$this->plugin->updateTag($sender->getName());
-							$sender->sendMessage($this->plugin->formatMessage("§bFaction successfully created! §6your faction is called §e$factionName\n§aNow, use: §2/f desc §6to make a description of your faction.", true));
+							$sender->sendMessage($this->plugin->formatMessage("§bFaction successfully created! §6your faction is called §e$factionName \n§aNow, use: §2/f desc §6to make a description of your faction.", true));
 							return true;
 						}
 					}
@@ -234,7 +234,7 @@ class FactionCommands {
                             return true;
 						}
 						if($this->plugin->getPlayerFaction($player) != $this->plugin->getPlayerFaction($args[1])) {
-							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cAdd player to faction first!"));
+							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cYou need to add a player to your faction first!"));
                             return true;
 						}		
 						if(!($this->plugin->getServer()->getPlayerExact($args[1]) instanceof Player)) {
@@ -261,7 +261,7 @@ class FactionCommands {
 				        $result = $stmt->execute();
 	
 	
-						$sender->sendMessage($this->plugin->formatMessage("§2You are no longer leader of the faction.!", true));
+						$sender->sendMessage($this->plugin->formatMessage("§2You are no longer leader \nof §2$factionName!", true));
 						$this->plugin->getServer()->getPlayerExact($args[1])->sendMessage($this->plugin->formatMessage("§aYou are now leader \nof §2$factionName!",  true));
 						$this->plugin->updateTag($sender->getName());
 						$this->plugin->updateTag($this->plugin->getServer()->getPlayerExact($args[1])->getName());
@@ -287,7 +287,7 @@ class FactionCommands {
 							return true;
 						}
                         if($args[1] == $sender->getName()){
-                            $sender->sendMessage($this->plugin->formatMessage("§4[Error] §cMeh. You can't promote yourself."));
+                            $sender->sendMessage($this->plugin->formatMessage("§4[Error] §cYou can't promote yourself."));
 							return true;
                         }
                         
@@ -305,7 +305,7 @@ class FactionCommands {
 						$sender->sendMessage($this->plugin->formatMessage("§3$args[1] §bhas been promoted to §3Officer!", true));
                         
 						if($player instanceof Player) {
-						    $player->sendMessage($this->plugin->formatMessage("§bYou were promoted to §3officer §bof §3$factionName!", true));
+						    $player->sendMessage($this->plugin->formatMessage("§bYou were promoted to §3officer §bof §3$factionName! §aGood work!", true));
                             $this->plugin->updateTag($this->plugin->getServer()->getPlayerExact($args[1])->getName());
                             return true;
                         }
@@ -332,7 +332,7 @@ class FactionCommands {
 						}
 						
                         if($args[1] == $sender->getName()){
-                            $sender->sendMessage($this->plugin->formatMessage("§4[Error] §cMeh. You can't demote yourself."));
+                            $sender->sendMessage($this->plugin->formatMessage("§4[Error] §cYou can't demote yourself."));
 							return true;
                         }
                         if(!$this->plugin->isOfficer($args[1])) {
@@ -374,13 +374,13 @@ class FactionCommands {
 							return true;
 						}
                         if($args[1] == $sender->getName()){
-                            $sender->sendMessage($this->plugin->formatMessage("§4[Error] §cMeh. You can't kick yourself."));
+                            $sender->sendMessage($this->plugin->formatMessage("§4[Error] §cYou can't kick yourself."));
 							return true;
                         }
 						$kicked = $this->plugin->getServer()->getPlayerExact($args[1]);
 						$factionName = $this->plugin->getPlayerFaction($player);
 						$this->plugin->db->query("DELETE FROM master WHERE player='$args[1]';");
-						$sender->sendMessage($this->plugin->formatMessage("§bYou successfully kicked §3$args[1]! §cYour faction is down to §3$numPlayers!", true));
+						$sender->sendMessage($this->plugin->formatMessage("§bYou successfully kicked §3$args[1]!", true));
                         $this->plugin->subtractFactionPower($factionName,$this->plugin->prefs->get("PowerGainedPerPlayerInFaction"));
 						
 						if($kicked instanceof Player) {
@@ -721,7 +721,7 @@ class FactionCommands {
 						$currentTime = time();
 						if( ($currentTime - $invitedTime) <= 60 ) { //This should be configurable
 							$this->plugin->db->query("DELETE FROM confirm WHERE player='$lowercaseName';");
-							$sender->sendMessage($this->plugin->formatMessage("§cThe invite to the faction: §d$facton §chas been declined succesfully.", true));
+							$sender->sendMessage($this->plugin->formatMessage("§cThe invite to the faction: §d$faction §chas been declined succesfully.", true));
 							$this->plugin->getServer()->getPlayerExact($array["invitedby"])->sendMessage($this->plugin->formatMessage("§3$player §bdeclined the invite!"));
 						} else {
 							$sender->sendMessage($this->plugin->formatMessage("§cInvite has timed out! Please try again."));
@@ -760,7 +760,7 @@ class FactionCommands {
 							$faction = $this->plugin->getPlayerFaction($player);
 							$name = $sender->getName();
 							$this->plugin->db->query("DELETE FROM master WHERE player='$name';");
-							$sender->sendMessage($this->plugin->formatMessage("§bYou successfully left §3$faction", true));
+							$sender->sendMessage($this->plugin->formatMessage("§bYou successfully left §3$faction \n§aWant to make your own faction instead? Do '§2/f create <name>'", true));
                             
                             $this->plugin->subtractFactionPower($faction,$this->plugin->prefs->get("PowerGainedPerPlayerInFaction"));
 							$this->plugin->updateTag($sender->getName());
@@ -1008,7 +1008,7 @@ class FactionCommands {
 				        $stmt->bindValue(":requestedby", $sender->getName());
 				        $stmt->bindValue(":timestamp", time());
 				        $result = $stmt->execute();
-                        $sender->sendMessage($this->plugin->formatMessage("§bYou requested to ally with §3$args[1]!\n§bWait for the leader's response...",true));
+                        $sender->sendMessage($this->plugin->formatMessage("§bYou requested to ally with §3$args[1]!\n§bWait for the leader's response.",true));
                         $leader->sendMessage($this->plugin->formatMessage("§bThe leader of §3$fac §brequested an alliance.\nType §3/f allyok §6to accept §3or /f allyno §6to deny.",true));
                         
                     }
