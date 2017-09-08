@@ -319,9 +319,9 @@ class FactionMain extends PluginBase implements Listener {
             
             if($this->prefs->get("EnableOverClaim")){
                 if($power_sender < $power_claimedBy){
-                    $sender->sendMessage($this->formatMessage("§cThis area is aleady claimed by §4$claimedBy §cwith §4$power_claimedBy §cSTR. Your faction has §4$power_sender §cpower. You don't have enough power to overclaim this plot."));
+                    $sender->sendMessage($this->formatMessage("§cThis area is aleady claimed by §4$claimedBy §cwith §4$power_claimedBy §cSTR. Your clan has §4$power_sender §cpower. You don't have enough power to overclaim this plot."));
                 } else {
-                    $sender->sendMessage($this->formatMessage("§cThis area is aleady claimed by §4$claimedBy §cwith §4$power_claimedBy §cSTR. §bYour faction has §3$power_sender §bpower. Type §3/f overclaim §6to overclaim this plot if you want."));
+                    $sender->sendMessage($this->formatMessage("§cThis area is aleady claimed by §4$claimedBy §cwith §4$power_claimedBy §cSTR. §bYour clan has §3$power_sender §bpower. Type §3/clans overclaim §6to overclaim this plot if you want."));
                 }
                 return false;
             } else {
@@ -370,9 +370,9 @@ class FactionMain extends PluginBase implements Listener {
 	
 	public function formatMessage($string, $confirm = false) {
 		if($confirm) {
-			return TextFormat::ITALIC . TextFormat::DARK_BLUE . "§5[" . TextFormat::GOLD . "§6Void§bFactions" . TextFormat::DARK_BLUE . "§5] " . TextFormat::GREEN . "$string";
+			return TextFormat::ITALIC . TextFormat::DARK_BLUE . "§5[" . TextFormat::GOLD . "§6Clans§cPE" . TextFormat::DARK_BLUE . "§5] " . TextFormat::GREEN . "$string";
 		} else {	
-			return TextFormat::ITALIC . TextFormat::DARK_BLUE . "§5[" . TextFormat::GOLD . "§6Void§bFactions" . TextFormat::DARK_BLUE . "§5] " . TextFormat::GREEN . "$string";
+			return TextFormat::ITALIC . TextFormat::DARK_BLUE . "§5[" . TextFormat::GOLD . "§6Clans§cPE" . TextFormat::DARK_BLUE . "§5] " . TextFormat::GREEN . "$string";
 		}
 	}
 	
