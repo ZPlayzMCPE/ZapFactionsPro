@@ -1,9 +1,9 @@
 # * *This plugin is now compatible with 3.0 API's, and will not work on older versions of PocketMine.
 # ClansPE ~~~ originally by EpicDF & Derpific, but this project was took over by Zeao, which is now ClansPE.
 
-### This is a custom build of FactionsPro, based on the version by @Tethered_.
+### This is a custom build of ClansPE, based on the FactionsPro version by @Tethered_.
 
-### Update 2.0.0 /// (Not tested, but should all be well. Release added soon.
+### Update 2.0.0 /// (Not tested as of yet, and not realising untill stabled.
 ### Update 1.9.x /// (Tested, and all is well. Release added @ https://poggit.pmmp.io/ci/TheFixerDevelopment/ZapFactionsPro/FactionsPro
 #### Update 1.8.1.0 /// (Formed and tested .phar, successfully tested. Release added.).
 #### Update 1.8.1 /// PureChat 1.3.3 100% compatible, use {faction} before group names. Working on official .phar.
@@ -13,7 +13,7 @@
 
 The .phar plugin works! How-To Install:
 
-1. Download most recent .phar build from https://poggit.pmmp.io/ci/TheFixerDevelopment/ZapFactionsPro/FactionsPro
+1. Download most recent .phar build (Coming soon.)
 
 2. Upload .phar plugin into the Plugins folder in your server files.
 
