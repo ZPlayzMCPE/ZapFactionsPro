@@ -1,14 +1,14 @@
 name: ClansPE
 author: Zeao
 description: The Official ClansPE plugin, originally FactionsPro.
-version: 2.0.0
+version: 2.0.0-B1
 main: FactionsPro\FactionMain
 api: [3.0.0-ALPHA7]
 commands:
-  f:
-    description: use /f help for all parameters
-    permission: f.command
+  clans:
+    description: use /clans help for all parameters
+    permission: clans.command
 permissions:
-  f.command:
+  clans.command:
     default: true
-    description: "Allow use of all faction commands"
+    description: "Allow use of all Clan commands"
