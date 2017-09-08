@@ -29,7 +29,7 @@ class FactionCommands {
 	CONST MAP_KEY_WILDERNESS = TextFormat::GRAY . "-";
 	CONST MAP_KEY_SEPARATOR = TextFormat::AQUA . "+";
 	CONST MAP_KEY_OVERFLOW = TextFormat::WHITE . "-" . TextFormat::WHITE; # ::MAGIC?
-	CONST MAP_OVERFLOW_MESSAGE = self::MAP_KEY_OVERFLOW . ": Too Many Factions (>" . 107 . ") on this Map.";
+	CONST MAP_OVERFLOW_MESSAGE = self::MAP_KEY_OVERFLOW . ": Too Many Clans (>" . 107 . ") on this Map.";
 	
 	public $plugin;
 	
@@ -51,7 +51,7 @@ class FactionCommands {
 					
 					if($args[0] == "war") {
 						if(!isset($args[1])) {
-							$sender->sendMessage($this->plugin->formatMessage("§7Please use: §e/clans war <faction name:tp> §6to request a faction war!"));
+							$sender->sendMessage($this->plugin->formatMessage("§7Please use: §e/clans war <clan name:tp> §6to request a clan war!"));
 							return true;
 						}
 						if(strtolower($args[1]) == "tp") {
@@ -78,19 +78,19 @@ class FactionCommands {
 							return true;
 						}
 						if(!$this->plugin->factionExists($args[1])) {
-							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cFaction dosent exist!"));
+							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cClan dosent exist!"));
 							return true;
 						}
 						if(!$this->plugin->isInFaction($sender->getName())) {
-							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cYou must be in a faction to do this!"));
+							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cYou must be in a Clan to do this!"));
 							return true;
 						}
 						if(!$this->plugin->isLeader($player)){
-							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cOnly your faction leader may start wars!"));
+							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cOnly your Clan leader may start wars!"));
 							return true;
 						} 
 						if(!$this->plugin->areEnemies($this->plugin->getPlayerFaction($player),$args[1])){
-                            $sender->sendMessage($this->plugin->formatMessage("§4[Error] §cfaction is not enemied with §2$args[1]!"));
+                            $sender->sendMessage($this->plugin->formatMessage("§4[Error] §cClan is not enemied with §2$args[1]!"));
                             return true;
                         } else {
 							$factionName = $args[1];
@@ -124,7 +124,7 @@ class FactionCommands {
 									}
 								}
 							}
-							$sender->sendMessage("§4[Error] §cFaction leader is not online.");
+							$sender->sendMessage("§4[Error] §cClan leader is not online.");
 							return true;
 						}
 					}
@@ -133,7 +133,7 @@ class FactionCommands {
 					
 					if($args[0] == "create") {
 						if(!isset($args[1])) {
-							$sender->sendMessage($this->plugin->formatMessage("§7Please use: §e/clans create <faction name> §6to create a faction."));
+							$sender->sendMessage($this->plugin->formatMessage("§7Please use: §e/clans create <clan name> §6to create a clans."));
 							return true;
 						}
 						if(!(ctype_alnum($args[1]))) {
@@ -145,7 +145,7 @@ class FactionCommands {
 							return true;
 						}
 						if($this->plugin->factionExists($args[1])) {
-							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cFaction already exists"));
+							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cClan already exists"));
 							return true;
 						}
 						if(strlen($args[1]) > $this->plugin->prefs->get("MaxFactionNameLength")) {
@@ -153,7 +153,7 @@ class FactionCommands {
 							return true;
 						}
 						if($this->plugin->isInFaction($sender->getName())) {
-							$sender->sendMessage($this->plugin->formatMessage("§4[Eror] §cYou must leave this faction first"));
+							$sender->sendMessage($this->plugin->formatMessage("§4[Eror] §cYou must leave this clan first"));
 							return true;
 						} else {
 							$factionName = $args[1];
@@ -166,7 +166,7 @@ class FactionCommands {
                             $this->plugin->updateAllies($factionName);
                             $this->plugin->setFactionPower($factionName, $this->plugin->prefs->get("TheDefaultPowerEveryFactionStartsWith"));
 							$this->plugin->updateTag($sender->getName());
-							$sender->sendMessage($this->plugin->formatMessage("§bFaction successfully created! §6your clan is called §e$factionName", true));
+							$sender->sendMessage($this->plugin->formatMessage("§bClan successfully created! §6your clan is called §e$factionName", true));
 							return true;
 						}
 					}
@@ -222,7 +222,7 @@ class FactionCommands {
 					
 					if($args[0] == "leader") {
 						if(!isset($args[1])) {
-							$sender->sendMessage($this->plugin->formatMessage("§7Please use: §e/clans leader <player> §6to transfer leadership of your faction."));
+							$sender->sendMessage($this->plugin->formatMessage("§7Please use: §e/clans leader <player> §6to transfer leadership of your clan."));
 							return true;
 						}
 						if(!$this->plugin->isInFaction($sender->getName())) {
@@ -287,7 +287,7 @@ class FactionCommands {
 							return true;
 						}
                         if($args[1] == $sender->getName()){
-                            $sender->sendMessage($this->plugin->formatMessage("§4[Error] §cMeh. You can't promote yourself."));
+                            $sender->sendMessage($this->plugin->formatMessage("§4[Error] §cYou can't promote yourself."));
 							return true;
                         }
                         
@@ -327,7 +327,7 @@ class FactionCommands {
 							return true;
 						}
 						if($this->plugin->getPlayerFaction($player) != $this->plugin->getPlayerFaction($args[1])) {
-							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cPlayer is not in this faction!"));
+							$sender->sendMessage($this->plugin->formatMessage("§4[Error] §cPlayer is not in this clan!"));
 							return true;
 						}
 						
