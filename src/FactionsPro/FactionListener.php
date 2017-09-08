@@ -70,7 +70,7 @@ class FactionListener implements Listener {
 
 			if(time() - $this->plugin->getMOTDTime($player) > 30) {
 
-				$PCE->getPlayer()->sendMessage($this->plugin->formatMessage("§cTimed out. Please use §4/f desc §6again."));
+				$PCE->getPlayer()->sendMessage($this->plugin->formatMessage("§cTimed out. Please use §4/clans desc §6again."));
 
 				$this->plugin->db->query("DELETE FROM motdrcv WHERE player='$player';");
 
@@ -88,7 +88,7 @@ class FactionListener implements Listener {
 
 				$PCE->setCancelled(true);
 
-				$PCE->getPlayer()->sendMessage($this->plugin->formatMessage("§bSuccessfully updated the faction description! Type §3/f info §6to see your faction information.", true));
+				$PCE->getPlayer()->sendMessage($this->plugin->formatMessage("§bSuccessfully updated the clan description! Type §3/clans info §6to see your clan information.", true));
 
 			}
 
@@ -212,7 +212,7 @@ class FactionListener implements Listener {
 
 				$event->setCancelled(true);
 
-				$event->getPlayer()->sendMessage($this->plugin->formatMessage("§dYou cannot break blocks here. This is already a property of a faction. Type §5/f plotinfo §dor §5/f map §6to check the plot/claim details."));
+				$event->getPlayer()->sendMessage($this->plugin->formatMessage("§dYou cannot break blocks here. This is already a property of a clan. Type §5/clans plotinfo §dor §5/clans map §6to check the plot/claim details."));
 
 				return true;
 
@@ -236,7 +236,7 @@ class FactionListener implements Listener {
 
 				$event->setCancelled(true);
 
-				$event->getPlayer()->sendMessage($this->plugin->formatMessage("§cYou cannot place blocks here. This is already a property of a faction. Type §4/f plotinfo or /f map §6for details."));
+				$event->getPlayer()->sendMessage($this->plugin->formatMessage("§cYou cannot place blocks here. This is already a property of a clan. Type §4/clans plotinfo or /clans §6for details."));
 
 				return true;
 
